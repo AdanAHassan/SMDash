@@ -1,0 +1,36 @@
+<div
+  *ngIf="inputData"
+  class="w-full h-full py-8 px-6 rounded-md shadow shadow-black flex flex-col divide-y divide-solid bg-white group hover:bg-black transition group-hover:text-white duration-500"
+  [ngClass]="{
+    'loading-animat' : isLoading()
+  }"
+>
+  <div class="h-full gap-8 flex flex-col">
+    <h6 class="h-4 w-full group-hover:text-white duration-200 text-2xl font-medium">{{isLoading() ? "Rendering" : helperService.capitalizeFirstLetter(CardData.type)}} Chart</h6>
+    <div class="h-[1px] group-hover:bg-white w-full bg-black"></div>
+    <app-progress-chart
+      *ngIf="CardData.type === 'progress' && !isLoading()"
+      class=""
+      [progressData]="CardData.data">
+    </app-progress-chart>
+    <app-line-chart
+      *ngIf="CardData.type === 'line' && !isLoading()"
+      class="h-full"
+      [lineChartData]="CardData.data">
+    </app-line-chart>
+    <app-table-chart
+      *ngIf="CardData.type === 'table' && !isLoading()"
+      class="h-full"
+      [dataGroup]="CardData.data">
+    </app-table-chart>
+    <app-bar-chart
+      *ngIf="CardData.type === 'bar' && !isLoading()"
+      class="h-full">
+    </app-bar-chart>
+    <app-loading-chart
+      *ngIf="isLoading()"
+      class="h-[50vh]"
+      [loadingBoolean]="isLoading()">
+    </app-loading-chart>
+  </div>
+</div>

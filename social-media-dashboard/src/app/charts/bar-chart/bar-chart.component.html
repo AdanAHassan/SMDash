@@ -1,0 +1,8 @@
+<canvas baseChart
+  *ngIf="barChartData && barChartData.datasets.length > 0"
+  class="h-full"
+  [data]="barChartData"
+  [options]="barChartOptions"
+  [type]="barChartType">
+</canvas>
+

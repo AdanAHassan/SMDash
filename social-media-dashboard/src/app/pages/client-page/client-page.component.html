@@ -1,0 +1,66 @@
+<div class="flex flex-row w-full h-full pb-8 pt-16 px-4">
+  <div class="flex flex-col w-2/3 gap-2">
+    <h2 class="h-[5%] text-3xl font-medium">{{helperService.splitString(clientName)}}'s Dashboard</h2>
+    <div
+      *ngIf="displayData.length > 0"
+      class="h-[25%] w-full flex flex-row gap-4 overflow-x-scroll p-4">
+      <app-data-card
+        class="min-w-[calc(25%-12px)] cursor-pointer"
+        *ngFor="let displayItem of displayData"
+        [cardData]="displayItem"
+      ></app-data-card>
+    </div>
+    <div
+      *ngIf="displayData.length === 0"
+      class="h-[25%] w-full flex flex-row gap-4 overflow-x-scroll p-4">
+      <app-loading-card
+        *ngFor="let item of loadingArr"
+        class="w-full"
+      >
+      </app-loading-card>
+    </div>
+    <div class="h-fit px-4 cursor-pointer">
+      <app-generic-card
+        [inputData]="displayData"
+        [inputType]="displayType"
+        [inputLength]="displayData.length"
+      ></app-generic-card>
+    </div>
+  </div>
+  <div class="flex flex-col w-1/3 h-full gap-4 p-4">
+    <div class="w-full flex flex-col gap-4 p-4">
+      <h3 class="text-xl font-medium">Platforms</h3>
+      <div *ngIf="dataGroup.length > 0"
+      class="flex flex-col w-full h-full gap-4">
+        <button
+          *ngFor="let dataItem of dataGroup"
+          class="flex flex-row p-4 gap-4 items-center rounded-lg bg-white border-black border-[1px] hover:bg-black hover:text-white duration-500 transition"
+          (click)="setPlatform(dataItem.id)"
+        >
+          <ng-icon
+            name={{helperService.convertToIcon(dataItem.platform)}}
+            class="text-3xl duration-500 ease-in-out transition"
+          ></ng-icon>
+          <h4 class="text-xl font-medium">{{dataItem.platform}}</h4>
+        </button>
+      </div>
+      <div *ngIf="dataGroup.length === 0"
+        class="h-full w-full flex flex-col gap-4">
+        <app-loading-card
+          class="w-full h-10"
+          *ngFor="let item of loadingArr.slice(0, 4)">
+        </app-loading-card>
+      </div>
+    </div>
+    <div class="flex flex-col w-full gap-4 p-4">
+      <h3 class="text-xl font-medium">Select chart</h3>
+      <button
+        *ngFor="let chartItem of chartTypes"
+        class="flex flex-row p-4 gap-4 items-center rounded-lg bg-white border-black border-[1px] hover:bg-black hover:text-white duration-500 transition"
+        (click)="setDisplayType(chartItem)"
+      >
+      <h4 class="text-xl font-medium">{{helperService.capitalizeFirstLetter(chartItem)}}</h4>
+      </button>
+    </div>
+  </div>
+</div>

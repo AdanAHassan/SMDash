@@ -1,0 +1,61 @@
+<div class="flex flex-col h-full w-full pt-8 pb-4 px-4">
+  <h4 class="text-4xl font-semibold pb-2">Track clients</h4>
+  <h6 class="text-lg font-semibold text-blue-700">Client list</h6>
+  <table
+    class="h-fit w-full border-separate border-spacing-y-4">
+    <thead
+      *ngIf="dataGroup.length > 0"
+      class="flex flex-col w-full">
+      <tr class="flex flex-row w-full">
+        <th
+          *ngFor="let keys of getKeys(dataGroup[0])"
+          class="text-start w-full py-4 pl-8 text-xl"
+        >
+          <p>{{helperService.capitalizeFirstLetter(keys)}}</p>
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      *ngIf="dataGroup.length > 0"
+      class="flex flex-col w-full gap-4">
+      <tr
+        *ngFor="let clientItem of dataGroup"
+        routerLink="/client/{{clientItem.name}}"
+        class="hover:bg-black hover:text-white transition duration-300 ease-in-out cursor-pointer flex flex-row w-full min-h-full items-center bg-white rounded border-black border-[1px] text-lg font-medium">
+        <td
+          *ngFor="let values of getValues(clientItem)"
+          class="rounded w-full h-full"
+          [ngClass]="{
+            'rounded-l border-r-0': isLeft(getPosition(values, clientItem)),
+            'rounded-r border-l-0': isRight(getPosition(values, clientItem)),
+            'border-x-0': getPosition(values, clientItem) === 'N/A',
+          }"
+        >
+          <p *ngIf="isFlat(values)" class="h-full py-4 pl-8">{{values}}</p>
+          <div *ngIf="!isFlat(values)" class="flex flex-row items-center h-full">
+            <ng-icon
+              *ngFor="let value of values"
+              class="w-full h-full text-3xl"
+              name={{helperService.convertToIcon(value)}}></ng-icon>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+    <tbody
+      *ngIf="dataGroup.length === 0"
+      class="flex flex-col w-full h-full gap-4">
+      <app-loading-card
+        *ngFor="let item of loadingArr"
+        class="h-20 w-full"></app-loading-card>
+    </tbody>
+  </table>
+  <app-pagination
+    (goPrev)="goToPrevPage()"
+    (goNext)="goToNextPage()"
+    [pageIndex]="pageIndex"
+    [perPage]="perPage"
+    [total]="total"
+    [loading]="loading"
+  >
+  </app-pagination>
+</div>

@@ -1,0 +1,16 @@
+<table class="w-full h-full divide-y-2 divide-blue-500 group-hover:text-white duration-200 text-lg">
+  <thead class="w-full font-normal justify-between">
+    <th class="text-start">{{helperService.capitalizeFirstLetter(dataGroup[0].timespan)}}</th>
+    <th *ngFor= "let metric of getMetrics()" class="text-start">{{metric}}</th>
+  </thead>
+  <tbody class="">
+    <tr *ngFor="let dataItem of dataGroup">
+      <td class="text-center">{{dataGroup.indexOf(dataItem) + 1}}</td>
+      <td *ngFor="let value of getValue(dataItem)" class="text-center">{{value}}</td>
+    </tr>
+    <tr class="font-semibold bg-slate-200 group-hover:bg-slate-600 duration-200">
+      <td class="text-end">Total</td>
+      <td *ngFor="let metric of getMetrics()" class="text-center">{{calculateTotal(metric)}}</td>
+    </tr>
+  </tbody>
+</table>

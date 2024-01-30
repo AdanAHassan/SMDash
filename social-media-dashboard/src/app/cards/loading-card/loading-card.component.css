@@ -1,0 +1,42 @@
+.loading-animate {
+  animation: colorChangeLoop 10s infinite
+}
+
+@keyframes colorChangeLoop {
+  0% {
+    background-color: #cbd5e1;
+    color: #000
+  }
+  13% {
+    background-color: #94a3b8;
+    color: #050505
+}
+  25% {
+    background-color: #64748b;
+    color: #222
+  }
+  38% {
+    background-color: #475569;
+    color: #ddd
+  }
+  50% {
+    background-color: #334155;
+    color: #fff
+  }
+  63% {
+    background-color: #475569;
+    color: #ddd
+  }
+  75% {
+    background-color: #64748b;
+    color: #222
+  }
+  88% {
+    background-color: #94a3b8;
+    color: #050505
+  }
+  100% {
+    background-color: #cbd5e1;
+    color: #000
+  }
+}

@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+}
+
+canvas {
+    width: 100% !important;
+}
+
+.chart {
+  position: relative;
+  min-height: unset;
+}
+

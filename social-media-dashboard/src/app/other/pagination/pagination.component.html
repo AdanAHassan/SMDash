@@ -1,0 +1,18 @@
+<div class="flex justify-end flex-row gap-1 w-full text-black py-4">
+  <button
+    [className]="pageIndex === 1 || loading ?
+    'bg-slate-500 px-2 py-1 disabled cursor-auto text-white' :
+    'bg-slate-300 px-2 py-1 hover:bg-slate-700 hover:text-white transition duration-200 ease-in-out cursor-pointer' "
+    (click)="clickPrev()"
+  >Previous</button>
+  <button
+    class="bg-slate-300 px-2 py-1 hover:bg-slate-700 hover:text-white transition duration-200 ease-in-out cursor-pointer"
+  >{{pageIndex}}</button>
+  <button
+    [className]="isLastPage() || loading ?
+    'bg-slate-500 px-2 py-1 disabled cursor-auto text-white' :
+    'bg-slate-300 px-2 py-1 hover:bg-slate-700 hover:text-white transition duration-200 ease-in-out cursor-pointer' "
+    (click)="clickNext()"
+  >Next</button>
+</div>
+

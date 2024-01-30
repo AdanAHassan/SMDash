@@ -1,0 +1,31 @@
+<div class="flex flex-col gap-4 text-lg">
+  <div
+    *ngFor="let progressItem of progressData"
+    class="flex flex-col justify-between h-full gap-1">
+    <div class="flex flex-row justify-between w-[calc(100%-16px)] ">
+      <h6 class="group-hover:text-white duration-200">{{progressItem.title}}</h6>
+      <p class="text-gray-600 group-hover:text-gray-200 duration-500 text-sm self-end">{{getReduced(progressItem)}}/{{progressItem.total}}</p>
+    </div>
+    <div class="flex flex-row gap-4 items-center">
+      <div class="bg-gray-300 w-[calc(100%-16px)] h-2 flex rounded">
+        <div class="text-transparent rounded-l"
+          [ngClass]="{
+            'rounded': progressComplete(progressItem),
+            'bg-green-600': progressComplete(progressItem),
+            'bg-red-500': !progressComplete(progressItem)
+          }"
+          [ngStyle]="{ width: getWidth(progressItem) }"
+        ></div>
+      </div>
+      <div
+        *ngIf="!progressComplete(progressItem)"
+        class="w-4 rounded-full h-4 bg-gray-300">
+      </div>
+      <ng-icon
+        *ngIf="progressComplete(progressItem)"
+        class="rounded-full w-4 h-4 bg-green-500 text-white group-hover:text-black duration-500 ease-in-out transition"
+        name="iconoirCheck">
+      </ng-icon>
+    </div>
+  </div>
+</div>
